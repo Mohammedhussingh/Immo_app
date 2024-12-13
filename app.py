@@ -40,13 +40,13 @@ from sklearn.preprocessing import MinMaxScaler
 import sys
 import os
 
-sys.path.append('/workspaces/Immo_app/Predict')
-sys.path.append('/workspaces/Immo_app/preprocessing')
+sys.path.append("/workspaces/Immo_app/Predict")
+sys.path.append("/workspaces/Immo_app/preprocessing")
 
 # Get the absolute path to the preprocessing folder
 preprocessing_path = os.path.join(
     os.path.dirname(__file__),  # Current script directory
-    'preprocessing'  # Preprocessing folder name
+    "preprocessing",  # Preprocessing folder name
 )
 
 from preprocessing.cleaning_data import Cleaning
@@ -54,7 +54,7 @@ from preprocessing.cleaning_data import Cleaning
 from Predict.prediction import Prediction
 
 
-c= Cleaning()
+c = Cleaning()
 Program = Prediction()
-reverse_mappings,reference_data,mappings=c.preprocess()
-Program.predict(reverse_mappings,reference_data,mappings)
+reverse_mappings, reference_data, mappings = c.preprocess()
+Program.predict(reverse_mappings, reference_data, mappings)

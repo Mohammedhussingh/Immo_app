@@ -1,4 +1,3 @@
-
 """
 This script is a Streamlit application for predicting property prices using a pre-trained model.
 
@@ -28,7 +27,6 @@ How to Use:
 3. Click on "Predict" to get the estimated property price.
 """
 
-
 import streamlit as st
 import pandas as pd
 import numpy as np
@@ -38,25 +36,25 @@ import sys
 import os
 
 
-
-sys.path.append('/workspaces/Immo_app/preprocessing')
+sys.path.append("/workspaces/Immo_app/preprocessing")
 # Get the absolute path to the preprocessing folder
 preprocessing_path = os.path.join(
     os.path.dirname(__file__),  # Current script directory
-    'preprocessing'  # Preprocessing folder name
+    "preprocessing",  # Preprocessing folder name
 )
 
 from preprocessing.cleaning_data import Cleaning
 
-class Prediction :
+
+class Prediction:
     """
-        Initializes the Prediction class.
-        """
+    Initializes the Prediction class.
+    """
+
     def __init__(self):
         pass
 
-    def predict(self,reverse_mappings,reference_data,mappings):
-        
+    def predict(self, reverse_mappings, reference_data, mappings):
         """
         Collects user input for property features, preprocesses the data, and predicts the property price.
 
@@ -69,32 +67,44 @@ class Prediction :
             None: Displays the predicted price directly in the Streamlit app.
         """
 
-        
-        
         # Manual input for single prediction
         st.title("House Price Prediction App")
-        st.write("""
+        st.write(
+            """
         This application predicts house prices using a pre-trained CatBoost model. 
         Enter the required features to get a prediction.
-        """)
+        """
+        )
 
         st.subheader("Enter Features for Prediction")
         manual_input = {}
         model = load("./model/model_Hussain.joblib")
 
-        c=Cleaning()
+        c = Cleaning()
         # Handle input for features
         for column in reference_data.columns:
             if column in mappings:  # Categorical column
                 options = list(mappings[column].values())
-                user_input = st.selectbox(f"Select {column.split('_encoded')[0]} of the property:", options)
+                user_input = st.selectbox(
+                    f"Select {column.split('_encoded')[0]} of the property:", options
+                )
                 manual_input[column] = reverse_mappings[column][user_input]
             elif column == "Bedrooms":  # Integer input for Bedrooms
-                manual_input[column] = st.number_input(f"Enter {column} of the property (integer):", min_value=0, value=1)
-            elif column == "Living_Area":  # Integer input for Living_Area (cannot be zero)
-                manual_input[column] = st.number_input(f"Enter the living area in squared meter (integer, cannot be zero):", min_value=1, value=50)
+                manual_input[column] = st.number_input(
+                    f"Enter {column} of the property (integer):", min_value=0, value=1
+                )
+            elif (
+                column == "Living_Area"
+            ):  # Integer input for Living_Area (cannot be zero)
+                manual_input[column] = st.number_input(
+                    f"Enter the living area in squared meter (integer, cannot be zero):",
+                    min_value=1,
+                    value=50,
+                )
             elif column == "Facades":  # Integer input for Facades
-                manual_input[column] = st.number_input(f"Enter {column} (integer):", min_value=1, value=1)
+                manual_input[column] = st.number_input(
+                    f"Enter {column} (integer):", min_value=1, value=1
+                )
             elif column == "Is_Equiped_Kitchen":  # Boolean input
                 manual_input[column] = st.checkbox("Does it have an equipped kitchen?")
 
@@ -104,7 +114,16 @@ class Prediction :
             elif column == "Garden":  # Boolean input
                 manual_input[column] = st.checkbox("Does it have a garden?")
 
-            elif column in ["GDP", "Type_encoded","Avg_rent", "Avg price","Bedrooms_per_area","Is_On_Coast","Prov_encoded","Region_encoded"]:
+            elif column in [
+                "GDP",
+                "Type_encoded",
+                "Avg_rent",
+                "Avg price",
+                "Bedrooms_per_area",
+                "Is_On_Coast",
+                "Prov_encoded",
+                "Region_encoded",
+            ]:
                 manual_input[column] = 0
                 continue
 
@@ -113,10 +132,11 @@ class Prediction :
 
         # Calculate Bedrooms per Area (Living_Area / Bedrooms), ensuring Bedrooms is greater than zero
         if manual_input["Bedrooms"] > 0:
-            manual_input["Bedrooms_per_area"] = manual_input["Living_Area"] / manual_input["Bedrooms"]
+            manual_input["Bedrooms_per_area"] = (
+                manual_input["Living_Area"] / manual_input["Bedrooms"]
+            )
         else:
             manual_input["Bedrooms_per_area"] = 0
-
 
         # Prediction button for manual input
         if st.button("Predict"):
@@ -131,7 +151,6 @@ class Prediction :
             st.write(f"Predicted Price: €{int(prediction):,}")
 
 
+# reverse_mappings,reference_data,mappings=preprocess()
 
-#reverse_mappings,reference_data,mappings=preprocess()
-
-#predict(reverse_mappings,reference_data,mappings)
+# predict(reverse_mappings,reference_data,mappings)
