@@ -38,8 +38,8 @@ import sys
 import os
 
 
-sys.path.append('/workspaces/Immo_app/preprocessing')
 
+sys.path.append('/workspaces/Immo_app/preprocessing')
 # Get the absolute path to the preprocessing folder
 preprocessing_path = os.path.join(
     os.path.dirname(__file__),  # Current script directory
@@ -72,6 +72,12 @@ class Prediction :
         
         
         # Manual input for single prediction
+        st.title("House Price Prediction App")
+        st.write("""
+        This application predicts house prices using a pre-trained CatBoost model. 
+        Enter the required features to get a prediction.
+        """)
+
         st.subheader("Enter Features for Prediction")
         manual_input = {}
         model = load("/workspaces/Immo_app/model/model_Hussain.joblib")
