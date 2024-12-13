@@ -46,7 +46,7 @@ preprocessing_path = os.path.join(
     'preprocessing'  # Preprocessing folder name
 )
 
-from cleaning_data import Cleaning
+from preprocessing.cleaning_data import Cleaning
 
 class Prediction :
     """
