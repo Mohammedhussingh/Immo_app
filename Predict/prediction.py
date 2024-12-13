@@ -80,7 +80,8 @@ class Prediction :
 
         st.subheader("Enter Features for Prediction")
         manual_input = {}
-        model = load("/workspaces/Immo_app/model/model_Hussain.joblib")
+        model = load("./model/model_Hussain.joblib")
+
         c=Cleaning()
         # Handle input for features
         for column in reference_data.columns:
