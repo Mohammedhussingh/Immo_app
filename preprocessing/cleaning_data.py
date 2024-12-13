@@ -92,7 +92,8 @@ class Cleaning :
         - dict: Mappings for categorical columns.
         """
 
-        reference_data = pd.read_csv("/workspaces/Immo_app/preprocessing/ED.csv", index_col=0).drop(columns=["Price", "Id"])
+        reference_data = pd.read_csv("./preprocessing/ED.csv").drop(columns=["Price", "Id"])
+
 
         # Define mappings for categorical columns
         mappings = {
