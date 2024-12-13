@@ -40,8 +40,8 @@ from sklearn.preprocessing import MinMaxScaler
 import sys
 import os
 
-sys.path.append('/home/learner/Desktop/D 13 Dec/Immo_app/Predict')
-sys.path.append('/home/learner/Desktop/D 13 Dec/Immo_app/preprocessing')
+sys.path.append('/workspaces/Immo_app/Predict')
+sys.path.append('/workspaces/Immo_app/preprocessing')
 
 # Get the absolute path to the preprocessing folder
 preprocessing_path = os.path.join(

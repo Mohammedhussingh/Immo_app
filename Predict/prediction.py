@@ -38,7 +38,7 @@ import sys
 import os
 
 
-sys.path.append('/home/learner/Desktop/Deplyment/Immoliza_app/preprocessing')
+sys.path.append('/workspaces/Immo_app/preprocessing')
 
 # Get the absolute path to the preprocessing folder
 preprocessing_path = os.path.join(
@@ -74,7 +74,7 @@ class Prediction :
         # Manual input for single prediction
         st.subheader("Enter Features for Prediction")
         manual_input = {}
-        model = load("/home/learner/Desktop/D 13 Dec/Immo_app/model/model_Hussain.joblib")
+        model = load("/workspaces/Immo_app/model/model_Hussain.joblib")
         c=Cleaning()
         # Handle input for features
         for column in reference_data.columns:
