@@ -74,7 +74,7 @@ class Prediction :
         # Manual input for single prediction
         st.subheader("Enter Features for Prediction")
         manual_input = {}
-        model = load("/home/learner/Desktop/Deplyment/Immoliza_app/predict/model/model_Hussain.joblib")
+        model = load("/home/learner/Desktop/D 13 Dec/Immo_app/model/model_Hussain.joblib")
         c=Cleaning()
         # Handle input for features
         for column in reference_data.columns:
