@@ -84,7 +84,7 @@ class Prediction:
         # Handle input for features
         for column in reference_data.columns:
             if column in mappings:  # Categorical column
-                options = list(mappings[column].values())
+                options = sorted(list(mappings[column].values()))
                 user_input = st.selectbox(
                     f"Select {column.split('_encoded')[0]} of the property:", options
                 )
@@ -99,7 +99,7 @@ class Prediction:
                 manual_input[column] = st.number_input(
                     f"Enter the living area in squared meter (integer, cannot be zero):",
                     min_value=1,
-                    value=50,
+                    value=80,
                 )
             elif column == "Facades":  # Integer input for Facades
                 manual_input[column] = st.number_input(
