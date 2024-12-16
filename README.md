@@ -6,6 +6,9 @@ This project aims to create a machine learning-based application that predicts t
 
 ## Installation
 
+using this URL :
+https://immoappgit-nbkmq9nfvj3v3xxufy2c2b.streamlit.app/
+
 To run this application locally, follow the steps below:
 
 ### Prerequisites
